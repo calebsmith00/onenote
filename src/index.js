@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Providers } from '@microsoft/mgt-element'
+import { Msal2Provider } from '@microsoft/mgt-msal2-provider'
+import { BrowserRouter } from 'react-router-dom'
+
+Providers.globalProvider = new Msal2Provider({
+  clientId: "f2e346d7-bfb2-4cb6-ad65-dc69d6f2cbc8",
+  scopes: ['user.read.all', 'notes.read.all']
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
