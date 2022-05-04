@@ -12,7 +12,7 @@ export const msalConfig = {
 }
 
 export const loginRequest = {
-    scopes: ["User.Read"]
+    scopes: ["User.Read", "Notes.Read.All"]
 }
 
 export const graphConfig = {
