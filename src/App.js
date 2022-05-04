@@ -26,10 +26,6 @@ function App() {
         <Route exact path="user/onenote/notebooks/notebook/:notebook/:section" element={<Section />} />
       </Routes>
 
-      <AuthenticatedTemplate>
-        <h3>Thanks for signing in! Go ahead and view your <Link to={`/user/onenote/notebooks`}>notebooks</Link></h3>
-      </AuthenticatedTemplate>
-
       <UnauthenticatedTemplate>
         <p>Welcome to the OneNote project. Please <SignInButton /> to continue with your project.</p>
       </UnauthenticatedTemplate>
