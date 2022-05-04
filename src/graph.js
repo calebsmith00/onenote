@@ -13,5 +13,5 @@ export const callMsGraph = async (accessToken, endpoint = "") => {
 
     return fetch(`${graphConfig.graphMeEndpoint}${endpoint}`, options)
         .then(response => response)
-        .catch(err => console.error(err))
+        .catch(err => err)
 }

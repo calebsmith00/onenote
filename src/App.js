@@ -1,10 +1,10 @@
-import { InteractionType } from '@azure/msal-browser'
-import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react'
-import { Link, Routes, Route } from 'react-router-dom'
+import { UnauthenticatedTemplate, useMsal } from '@azure/msal-react'
+import { Routes, Route } from 'react-router-dom'
 import Homepage from './components/Homepage'
 import Notebooks from './components/Notebooks'
 import Notebook from './components/Notebook'
 import Section from './components/Section'
+import CreateNotebook from './components/CreateNotebook'
 
 function signInClickHandler(instance) {
   instance.loginPopup()
@@ -22,8 +22,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route path="user/onenote/notebooks" element={<Notebooks />} />
-        <Route exact path="user/onenote/notebooks/notebook/:notebook" element={<Notebook />} />
-        <Route exact path="user/onenote/notebooks/notebook/:notebook/:section" element={<Section />} />
+        <Route path="user/onenote/notebooks/notebook/:notebook" element={<Notebook />} />
+        <Route path="user/onenote/notebooks/notebook/:notebook/:section" element={<Section />} />
+        <Route path="admin/onenote/notebooks/create" element={<CreateNotebook />} />
       </Routes>
 
       <UnauthenticatedTemplate>
