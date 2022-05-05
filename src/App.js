@@ -6,14 +6,10 @@ import Notebook from './components/Notebook'
 import Section from './components/Section'
 import CreateNotebook from './components/CreateNotebook'
 
-function signInClickHandler(instance) {
-  instance.loginPopup()
-}
-
 function SignInButton() {
   const { instance } = useMsal()
 
-  return <button onClick={() => signInClickHandler(instance)}>Sign In</button>
+  return <button onClick={() => instance.loginPopup()}>Sign In</button>
 }
 
 function App() {
