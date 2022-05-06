@@ -2,20 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Providers } from '@microsoft/mgt-element'
-import { Msal2Provider } from '@microsoft/mgt-msal2-provider'
 import { BrowserRouter } from 'react-router-dom'
+import { msalConfig } from './authConfig'
+import * as Msal from '@azure/msal-browser'
+import { MsalProvider } from '@azure/msal-react'
 
-Providers.globalProvider = new Msal2Provider({
-  clientId: "f2e346d7-bfb2-4cb6-ad65-dc69d6f2cbc8",
-  scopes: ['user.read.all', 'notes.read.all']
-})
+const publicClientApplication = new Msal.PublicClientApplication(msalConfig)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <App />
+      <MsalProvider instance={publicClientApplication}>
+        <App />
+      </MsalProvider>
     </React.StrictMode>
   </BrowserRouter>
 );
