@@ -1,5 +1,4 @@
 import { callMsGraph } from './graph'
-import { useMsal } from '@azure/msal-react'
 import * as scope from './authConfig'
 
 // async function getAccessToken() {

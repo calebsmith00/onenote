@@ -1,6 +1,4 @@
 import { useMsal, AuthenticatedTemplate } from '@azure/msal-react'
-import { loginRequest } from '../authConfig'
-import { callMsGraph } from '../graph.js'
 import { getPage } from '../graphRequests'
 
 function Page() {

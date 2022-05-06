@@ -2,7 +2,7 @@ function getElements() {
     let elements = document.querySelectorAll("tr > td")
 
     elements.forEach(element => { 
-        if (element.textContent == "") return
+        if (element.textContent === "") return
         console.log(`${element.className} = ${element.textContent}`)
     })
 }

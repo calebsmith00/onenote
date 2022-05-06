@@ -1,4 +1,4 @@
-import { loginRequest, graphConfig } from './authConfig'
+import { graphConfig } from './authConfig'
 
 export const callMsGraph = async (accessToken, endpoint = "") => {
     const headers = new Headers()
