@@ -4,8 +4,6 @@ import { getPage } from '../graphRequests'
 function Page() {
     const { instance, accounts } = useMsal()
 
-    console.log(accounts)
-
     return (
         <>
             <button onClick={() => getPage(instance, accounts)}>Request page(s)</button>
