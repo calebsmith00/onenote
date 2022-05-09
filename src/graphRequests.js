@@ -1,13 +1,9 @@
-import { callMsGraph } from './graph'
+import { callMsGraph, postMsGraph } from './graph'
 import * as scope from './authConfig'
 
-// async function getAccessToken() {
-//     const { instance, accounts } = useMsal()
-//     let response = await instance.acquireTokenSilent({ ...scope.loginRequest, account: accounts[0] })
-
-//     if (!response) throw new Error("[ERROR] Response from instance could not be located.")
-//     return response
-// }
+function validateToken({ accessToken }) {
+    if (!accessToken) throw new Error("Invalid access token submitted!")
+}
 
 export async function getNotebooks(instance, account, user = {}) {
 
@@ -21,6 +17,8 @@ export async function getPage(instance, account, user = {}) {
     // let response = await useAccessToken()
     let pageId = '1'
     let response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
+    validateToken(response)
+
     let graphResponse = await callMsGraph(response.accessToken, undefined, `/onenote/pages/${pageId}/content?includeIDs=true`)
     graphResponse = await graphResponse.text()
     if (!graphResponse) throw new Error("There was no valid response from MSGraph.")
@@ -35,6 +33,8 @@ export async function getPage(instance, account, user = {}) {
 
 export async function getMemberOf(instance, account) {
     let response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
+    validateToken(response)
+
     let graphResponse = await callMsGraph(response.accessToken, "userSelector", 
         `/${account.localAccountId}/memberOf?$select=displayName`
     )
@@ -45,4 +45,19 @@ export async function getMemberOf(instance, account) {
         if (!member.displayName === "Global Administrator") return undefined
         
     })
+}
+
+export async function createTemplate(instance, account, template) {
+    let response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
+    validateToken(response)
+
+    let graphResponse = await postMsGraph({
+        accessToken: response.accessToken,
+        endpoint: `/onenote/notebooks/`,
+        body: {
+            displayName: template.title,
+        }
+    })
+
+    return graphResponse
 }
