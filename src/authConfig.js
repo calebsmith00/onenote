@@ -16,5 +16,6 @@ export const loginRequest = {
 }
 
 export const graphConfig = {
-    graphMeEndpoint: "https://graph.microsoft.com/v1.0/me"
+    graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
+    graphUserEndpoint: "https://graph.microsoft.com/v1.0/users"
 }
