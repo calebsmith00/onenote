@@ -6,12 +6,18 @@ function validateToken({ accessToken }) {
 }
 
 export async function getNotebooks(instance, account, user = {}) {
+    const response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
+    validateToken(response)
 
+    const graphResponse = await callMsGraph({
+        accessToken: response.accessToken,
+        endpoint: "/onenote/notebooks?$expand=sections"
+    })
+
+    const notebooks = await graphResponse.json()
+
+    return notebooks.value
 }
-
-// export function getSection() {
-
-// }
 
 export async function getPage(instance, account, user = {}) {
     let pageId = '1-ca464fdd477048068c186923fbaf131e!1-7ae5de74-ecdd-433d-9cb8-f1c98b8cbcdd'
