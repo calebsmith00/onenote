@@ -11,11 +11,28 @@ export default function CreateNotebook() {
             .then(response => setUsers(response))
             .catch(err => console.error(err))
 
-    }, [instance])
+    }, [instance, accounts])
+
+    const handleSubmit = e => {
+        e.preventDefault()
+
+    }
 
     return (
         <>
-            <h1>Create notebook</h1>
+            <h1>Notebook Creation</h1>
+
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="users">Select a user: </label>
+                <select name="users" id="users">
+                {
+                    users.map(user => <option key={user.id}>{user.displayName} ({user.mail})</option>)
+                }
+                </select>
+
+                <button type="submit">Create notebook</button>
+            </form>
+            
         </>
     )
 }
