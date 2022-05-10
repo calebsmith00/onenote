@@ -1,7 +1,6 @@
 import { AuthenticatedTemplate, useMsal } from '@azure/msal-react'
-import { useEffect, useState } from 'react'
-import { getMemberOf, createTemplate } from '../graphRequests'
-import { templates } from '../templates'
+import { useState } from 'react'
+import { createTemplate } from '../graphRequests'
 
 export default function CreateTemplate() {
     const { instance, accounts } = useMsal()

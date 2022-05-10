@@ -34,6 +34,8 @@ export async function getPage(instance, account, user = {}) {
 
     let parser = new DOMParser()
     let doc = parser.parseFromString(graphResponse, "text/html")
+
+    return doc
 }
 
 export async function getMemberOf(instance, account) {
@@ -50,7 +52,7 @@ export async function getMemberOf(instance, account) {
 
     graphResponse.map(member => {
         if (!member.displayName === "Global Administrator") return undefined
-        
+        return member.displayName
     })
 }
 
