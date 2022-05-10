@@ -85,5 +85,5 @@ export async function getUsers(instance, account) {
     const parsedResponse = await graphResponse.json()
     if (!graphResponse) throw new Error("There was no valid response from MSGraph.")
 
-    console.log(parsedResponse)
+    return parsedResponse.value
 }

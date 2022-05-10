@@ -12,11 +12,9 @@ const publicClientApplication = new Msal.PublicClientApplication(msalConfig)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <React.StrictMode>
-      <MsalProvider instance={publicClientApplication}>
-        <App />
-      </MsalProvider>
-    </React.StrictMode>
+    <MsalProvider instance={publicClientApplication}>
+      <App />
+    </MsalProvider>
   </BrowserRouter>
 );
 
