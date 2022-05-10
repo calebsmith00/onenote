@@ -6,7 +6,6 @@ import { templates } from '../templates'
 export default function CreateTemplate() {
     const { instance, accounts } = useMsal()
     const [ template, setTemplate ] = useState({})
-    //const [ isAdmin, setIsAdmin ] = useState(false)
 
     const handleChange = e => {
         setTemplate({

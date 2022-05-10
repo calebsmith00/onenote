@@ -69,3 +69,19 @@ export async function createTemplate(instance, account, template) {
 
     return graphResponse
 }
+
+export async function getUsers(instance, account) {
+    const response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
+    validateToken(response)
+
+    const graphResponse = await callMsGraph({
+        accessToken: response.accessToken,
+        base: scope.graphConfig.graphUserEndpoint,
+        contentType: "application/json"
+    })
+
+    const parsedResponse = await graphResponse.json()
+    if (!graphResponse) throw new Error("There was no valid response from MSGraph.")
+
+    console.log(parsedResponse)
+}
