@@ -1,6 +1,8 @@
 import { getUsers } from "../graphRequests"
 import { useMsal } from "@azure/msal-react"
 import { useEffect, useState } from "react"
+import { templates } from '../templates'
+import "../styles/Form.scss"
 
 export default function CreateNotebook() {
     const { instance, accounts } = useMsal()
@@ -15,7 +17,6 @@ export default function CreateNotebook() {
 
     const handleSubmit = e => {
         e.preventDefault()
-
     }
 
     return (
@@ -23,14 +24,27 @@ export default function CreateNotebook() {
             <h1>Notebook Creation</h1>
 
             <form onSubmit={handleSubmit}>
-                <label htmlFor="users">Select a user: </label>
-                <select name="users" id="users">
-                {
-                    users.map(user => <option key={user.id}>{user.displayName} ({user.mail})</option>)
-                }
-                </select>
+                <span>
+                    <label htmlFor="users">Select a user: </label>
+                    <select name="users" id="users">
+                    {
+                        users.map(user => <option key={user.id}>{user.displayName} ({user.mail})</option>)
+                    }
+                    </select>
+                </span>
 
-                <button type="submit">Create notebook</button>
+                <br />
+                
+                <span>
+                    <label htmlFor="templates">Select a template: </label>
+                    <select name="templates" id="templates">
+                    {
+                        templates.map(template => <option key={template.id}>{template.group}</option>)
+                    }
+                    </select>
+                </span>
+
+                <button type="submit" className="btn-submit">Create Notebook</button>
             </form>
             
         </>
