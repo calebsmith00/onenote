@@ -68,7 +68,7 @@ export async function createTemplate(instance, account, template) {
             displayName: template.title,
         })
     })
-
+    
     return graphResponse
 }
 
