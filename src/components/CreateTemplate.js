@@ -51,7 +51,7 @@ export default function CreateTemplate() {
         })
 
         createTemplate(instance, accounts[0], {
-            template: template.group,
+            title: template.group,
             trainings: trainingList
         })
     }
