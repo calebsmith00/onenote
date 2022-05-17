@@ -27,7 +27,8 @@ export const callMsGraph = async ({
         .catch(err => err)
 }
 
-export const callMyAPI = async({
+export const callMyAPI = async ({
     userID,
-
-})
+}) => {
+    console.log("My API was called.")
+}

@@ -60,15 +60,15 @@ export async function createTemplate(instance, account, template) {
     const response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
     validateToken(response)
 
-    const { template, trainings } = template
+    const { title, trainings } = template
 
     let graphResponse = await callMsGraph({
         accessToken: response.accessToken,
         endpoint: `/onenote/notebooks/`,
         method: "POST",
         body: JSON.stringify({
-            displayName: template,
-            content: 
+            displayName: title,
+            content: trainings
         })
     })
 
