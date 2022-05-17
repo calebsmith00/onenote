@@ -18,9 +18,9 @@ function App() {
     <div>
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-        <Route path="user/onenote/notebooks" element={<Notebooks />} />
-        <Route path="user/onenote/notebooks/notebook/:notebook" element={<Notebook />} />
-        <Route path="user/onenote/notebooks/notebook/:notebook/:section" element={<Section />} />
+        <Route path="user/:userId/onenote/notebooks" element={<Notebooks />} />
+        <Route path="user/:userId/onenote/notebooks/notebook/:notebook" element={<Notebook />} />
+        <Route path="user/:userId/onenote/notebooks/notebook/:notebook/:section" element={<Section />} />
         <Route path="admin/onenote/template/create" element={<CreateTemplate />} />
         <Route path="admin/onenote/notebooks/create" element={<CreateNotebook />} />
       </Routes>

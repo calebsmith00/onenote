@@ -2,17 +2,18 @@ import { AuthenticatedTemplate, useMsal } from '@azure/msal-react'
 import { useState } from 'react'
 import { createTemplate } from '../graphRequests'
 import styles from '../styles/Table.scss'
+import '../styles/Form.scss'
 
 export default function CreateTemplate() {
     const { instance, accounts } = useMsal()
-    const [ template, setTemplate ] = useState({})
-    const [ training, setTraining ] = useState({
+    const [template, setTemplate] = useState({})
+    const [training, setTraining] = useState({
         "task-name": "",
         "mentor": "",
         "mentor-signoff": "",
         "prerequisites": "",
     })
-    const [ trainingList, setTrainingList ] = useState([])
+    const [trainingList, setTrainingList] = useState([])
 
     const handleChange = e => {
         setTemplate({
@@ -48,13 +49,18 @@ export default function CreateTemplate() {
             "mentor-signoff": "",
             "prerequisites": "",
         })
+
+        createTemplate(instance, accounts[0], {
+            template: template.group,
+            trainings: trainingList
+        })
     }
 
     return (
         <>
             <AuthenticatedTemplate>
                 <h1>Template Details:</h1>
-                <form style={{display: 'flex', flexDirection: 'column', width: "30%"}} onSubmit={handleSubmit}>
+                <form className="template-form">
                     <input type="text" name="title" placeholder="Template Name" onChange={handleChange} />
                     <input type="text" name="group" placeholder="Template Group" onChange={handleChange} />
                     <input type="text" name="link" placeholder="Template Link Access (edit, view, both)" onChange={handleChange} />
@@ -64,7 +70,7 @@ export default function CreateTemplate() {
                 </form>
 
                 <h1>Template Trainings:</h1>
-                <form style={{display: 'flex', flexDirection: 'column', width: '30%'}} onSubmit={handleTrainingSubmit}>
+                <form className="template-form" onSubmit={handleTrainingSubmit}>
                     <input type="text" name="task-name" placeholder="Task Name" onChange={handleTrainingChange} value={training["task-name"]} />
                     <input type="text" name="mentor" placeholder="Mentor" onChange={handleTrainingChange} value={training["mentor"]} />
                     <input type="text" name="mentor-signoff" placeholder="Mentor Sign-Off" onChange={handleTrainingChange} value={training["mentor-signoff"]} />

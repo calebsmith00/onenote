@@ -1,6 +1,7 @@
 import { getNotebooks } from "../graphRequests"
 import { useMsal } from "@azure/msal-react"
-import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 
 export default function Notebooks() {
     const { instance, accounts } = useMsal()
@@ -16,20 +17,32 @@ export default function Notebooks() {
 
     const parseNotebooks = cb => {
         if (!notebooks) return
-        
+
         return notebooks.map(notebook => {
             return cb(notebook, notebook.sections)
         })
     }
 
     return (
-        <>  
+        <>
             <h1>Notebooks</h1>
 
             {
                 parseNotebooks((notebook, sections) => {
                     return sections.map(section => {
-                        return <p key={section.id}>{notebook.displayName} - {section.displayName}</p>
+                        return (
+                            <React.Fragment key={section.id}>
+                                <p>
+                                    <Link to={`notebook/${notebook.id}`}>
+                                        {notebook.displayName}
+                                    </Link>
+                                    -
+                                    <Link to={`notebook/${notebook.id}/${section.id}`}>
+                                        {section.displayName}
+                                    </Link>
+                                </p>
+                            </React.Fragment>
+                        )
                     })
                 })
             }

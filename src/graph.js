@@ -1,9 +1,9 @@
 import { graphConfig } from './authConfig'
 
 export const callMsGraph = async ({
-    accessToken, 
-    base = `${graphConfig.graphMeEndpoint}`, 
-    endpoint = "", 
+    accessToken,
+    base = `${graphConfig.graphMeEndpoint}`,
+    endpoint = "",
     contentType = "text/html",
     method = "GET",
     body = undefined
@@ -26,3 +26,8 @@ export const callMsGraph = async ({
         .then(response => response)
         .catch(err => err)
 }
+
+export const callMyAPI = async({
+    userID,
+
+})

@@ -5,7 +5,7 @@ function validateToken({ accessToken }) {
     if (!accessToken) throw new Error("Invalid access token submitted!")
 }
 
-export async function getNotebooks(instance, account, user = {}) {
+export async function getNotebooks(instance, account) {
     const response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
     validateToken(response)
 
@@ -19,13 +19,13 @@ export async function getNotebooks(instance, account, user = {}) {
     return notebooks.value
 }
 
-export async function getPage(instance, account, user = {}) {
+export async function getPage(instance, account) {
     let pageId = '1-ca464fdd477048068c186923fbaf131e!1-7ae5de74-ecdd-433d-9cb8-f1c98b8cbcdd'
     let response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
     validateToken(response)
 
     let graphResponse = await callMsGraph({
-        accessToken: response.accessToken, 
+        accessToken: response.accessToken,
         endpoint: `/onenote/pages/${pageId}/content?includeIDs=true`
     })
 
@@ -43,8 +43,8 @@ export async function getMemberOf(instance, account) {
     validateToken(response)
 
     let graphResponse = await callMsGraph({
-        accessToken: response.accessToken, 
-        base: "userSelector", 
+        accessToken: response.accessToken,
+        base: "userSelector",
         endpoint: `/${account.localAccountId}/memberOf?$select=displayName`
     })
     graphResponse = await graphResponse.json()
@@ -57,18 +57,21 @@ export async function getMemberOf(instance, account) {
 }
 
 export async function createTemplate(instance, account, template) {
-    let response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
+    const response = await instance.acquireTokenSilent({ ...scope.loginRequest, account })
     validateToken(response)
+
+    const { template, trainings } = template
 
     let graphResponse = await callMsGraph({
         accessToken: response.accessToken,
         endpoint: `/onenote/notebooks/`,
         method: "POST",
         body: JSON.stringify({
-            displayName: template.title,
+            displayName: template,
+            content: 
         })
     })
-    
+
     return graphResponse
 }
 
