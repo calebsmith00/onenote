@@ -1,4 +1,4 @@
-import { useMsal } from '@azure/msal-react'
+import { useMsal, AuthenticatedTemplate } from '@azure/msal-react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -16,7 +16,9 @@ export default function Homepage() {
         <div>
             <h1>Home</h1>
 
-            <Link to={`user/${userId}/onenote/notebooks`}>Notebooks</Link>
+            <AuthenticatedTemplate>
+                <Link to={`user/${userId}/onenote/notebooks`}>Notebooks</Link>
+            </AuthenticatedTemplate>
         </div>
     )
 }
