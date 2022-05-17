@@ -28,7 +28,12 @@ export const callMsGraph = async ({
 }
 
 export const callMyAPI = async ({
-    userID,
+    userId,
+    base = "http://localhost:3001",
+    endpoint = "",
+    contentType = "application/json",
+    method = "GET",
+    body = undefined
 }) => {
-    console.log("My API was called.")
+    return await fetch(`${base}/${endpoint}`)
 }
