@@ -1,44 +1,32 @@
-import { useMsal } from '@azure/msal-react'
 import { useState } from 'react'
-import { inputNeeded } from './templateFields'
 import './Template.scss'
 
 export default function CreateTemplate() {
-    const { instance, accounts } = useMsal()
-    const [inputFields, setInputFields] = useState({})
+    const [template, setTemplate] = useState({})
 
-    const getInputFields = handleChange => {
-        return inputNeeded.map(field => (
-            <input key={field.id} className="template-input" type="text" placeholder={field.placeholder} name={field.name} onChange={handleChange} />
-        ))
-    }
+    const handleChange = e => {
+        const { name, value } = e.target
 
-    const handleInputChange = e => {
-        let { name, value } = e.target
-
-        setInputFields({
-            ...inputFields,
+        setTemplate({
+            ...template,
             [name]: value
         })
     }
 
     const handleSubmit = e => {
         e.preventDefault()
+
+        sessionStorage.setItem('template', JSON.stringify(template))
     }
 
     return (
-        <div>
-            <h1>This is where templates are created</h1>
-            <p>A template is a set of data that outlines what training a new-hire needs to take to complete the onboarding process.</p>
-            {/* TEMPLATE CREATION FORM */}
-
-
-            {/* TRAINING CREATION FORM */}
+        <>
             <form className="template-form" onSubmit={handleSubmit}>
-                {getInputFields(handleInputChange)}
+                <input type="text" placeholder="Template Name" className="template-input" onChange={handleChange} name="template-title" />
+                <input type="text" placeholder="Number of Sections" className="template-input" onChange={handleChange} name="template-sections" />
 
                 <button type="submit">Submit</button>
             </form>
-        </div>
+        </>
     )
 }

@@ -5,7 +5,8 @@ import Notebooks from './components/Notebooks'
 import Notebook from './components/Notebook'
 import Section from './components/Section'
 import CreateNotebook from './components/CreateNotebook'
-import CreateTemplate from './components/Template/CreateTemplate'
+import Template from './components/Template/Template'
+import AddTraining from './components/Template/AddTraining'
 
 function SignInButton() {
   const { instance } = useMsal()
@@ -18,10 +19,15 @@ function App() {
     <div>
       <Routes>
         <Route exact path="/" element={<Homepage />} />
+
+        {/* USER ROUTES */}
         <Route path="user/:userId/onenote/notebooks" element={<Notebooks />} />
         <Route path="user/:userId/onenote/notebooks/notebook/:notebook" element={<Notebook />} />
         <Route path="user/:userId/onenote/notebooks/notebook/:notebook/:section" element={<Section />} />
-        <Route path="admin/onenote/template/create" element={<CreateTemplate />} />
+
+        {/* ADMIN ROUTES */}
+        <Route path="admin/onenote/template/create" element={<Template />} />
+        <Route path="admin/onenote/template/add/trainings" element={<AddTraining />} />
         <Route path="admin/onenote/notebooks/create" element={<CreateNotebook />} />
       </Routes>
 
