@@ -1,10 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { inputNeeded } from './templateFields'
 import './Template.scss'
 
 export default function AddTraining() {
     const [training, setTraining] = useState({})
-    const [inputFields, setInputFields] = useState({})
+    const [templates, setTemplates] = useState([])
+
+    useEffect(() => {
+        const sessionTemplate = sessionStorage.getItem('template')
+        if (!sessionTemplate) return
+
+        setTemplates(JSON.parse(sessionTemplate))
+    }, [])
 
     const getInputFields = handleChange => {
         return inputNeeded.map(field => (
@@ -19,10 +26,16 @@ export default function AddTraining() {
     const handleInputChange = e => {
         let { name, value } = e.target
 
-        setInputFields({
-            ...inputFields,
+        setTraining({
+            ...training,
             [name]: value
         })
+    }
+
+    const renderTemplates = () => {
+        return templates.map((template, index) => (
+            <option key={index} value={template["template-title"]}>{template["template-title"]}</option>
+        ))
     }
 
     return (
@@ -30,6 +43,12 @@ export default function AddTraining() {
             <h1>Add some trainings</h1>
             {/* TRAINING CREATION FORM */}
             <form className="template-form" onSubmit={handleSubmit}>
+                <select>
+                    {/* GET ALL <option> FIELDS */}
+                    {renderTemplates()}
+                </select>
+
+                {/* GET ALL <input> FIELDS */}
                 {getInputFields(handleInputChange)}
 
                 <button type="submit">Submit</button>

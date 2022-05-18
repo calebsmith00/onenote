@@ -16,7 +16,12 @@ export default function CreateTemplate() {
     const handleSubmit = e => {
         e.preventDefault()
 
-        sessionStorage.setItem('template', JSON.stringify(template))
+        const currentSession = sessionStorage.getItem('template') || JSON.stringify("")
+
+        sessionStorage.setItem('template', JSON.stringify([
+            ...JSON.parse(currentSession),
+            template
+        ]))
     }
 
     return (
