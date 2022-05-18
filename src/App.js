@@ -5,7 +5,7 @@ import Notebooks from './components/Notebooks'
 import Notebook from './components/Notebook'
 import Section from './components/Section'
 import CreateNotebook from './components/CreateNotebook'
-import CreateTemplate from './components/CreateTemplate'
+import CreateTemplate from './components/Template/CreateTemplate'
 
 function SignInButton() {
   const { instance } = useMsal()
