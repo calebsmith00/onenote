@@ -7,6 +7,7 @@ import "./Template.scss";
 export default function CreateTrainingForm({
   updateTemplate,
   updateTrainingList,
+  updateFinished,
 }) {
   const [training, setTraining] = useState(defaultTrainings);
   const templates = useTemplateSession();
@@ -44,10 +45,13 @@ export default function CreateTrainingForm({
       ...training,
       [name]: value,
     });
+
+    updateFinished(false);
   };
 
   const templateChange = (e) => {
     updateTemplate(e.target.value);
+    updateFinished(false);
   };
 
   const renderTemplates = () => {
@@ -70,7 +74,7 @@ export default function CreateTrainingForm({
         {/* GET ALL <input> FIELDS */}
         {getInputFields(handleChange)}
 
-        <button type="submit">Submit</button>
+        <button type="submit">Add Entry</button>
       </form>
     </>
   );

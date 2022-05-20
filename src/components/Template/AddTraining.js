@@ -8,6 +8,7 @@ import "./Template.scss";
 export default function AddTraining() {
   const [trainingList, setTrainingList] = useState([]);
   const [activeTemplate, setActiveTemplate] = useState("");
+  const [finished, setFinished] = useState(false);
   const templates = useTemplateSession();
   const foundTrainingList = useTrainingSession(activeTemplate);
 
@@ -27,18 +28,25 @@ export default function AddTraining() {
       return setTrainingList([...trainingList, list]);
   };
 
+  const updateFinished = (done) => {
+    setFinished(done);
+  };
+
   return templates.length > 0 ? (
     <>
       <h1>Add some trainings</h1>
       <CreateTrainingForm
         updateTemplate={updateActiveTemplate}
         updateTrainingList={updateTrainingList}
+        updateFinished={updateFinished}
       />
 
       <ModifyTemplateForm
         activeTemplate={activeTemplate}
         trainingList={trainingList}
         updateTrainingList={updateTrainingList}
+        finished={finished}
+        updateFinished={updateFinished}
       />
     </>
   ) : (
