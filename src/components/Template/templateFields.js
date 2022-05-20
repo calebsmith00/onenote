@@ -1,22 +1,22 @@
 export const inputNeeded = [
   {
     id: 0,
-    name: "template-request",
+    name: "training-request",
     placeholder: "Request title",
   },
   {
     id: 1,
-    name: "template-mentor",
+    name: "training-mentor",
     placeholder: "Mentor's name",
   },
   {
     id: 2,
-    name: "template-prereq",
+    name: "training-prereq",
     placeholder: "Any prerequisites?",
   },
   {
     id: 3,
-    name: "template-notes",
+    name: "training-notes",
     placeholder: "Additional notes / comments",
   },
 ];

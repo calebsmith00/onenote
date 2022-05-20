@@ -7,3 +7,12 @@ export const tableHeaders = [
   "Prerequisite",
   "Notes / Comments",
 ];
+
+export const defaultTrainings = {
+  "training-request": "",
+  requestDate: "",
+  requestCompletionDate: "",
+  "training-mentor": "",
+  "training-prereq": "",
+  "training-notes": "",
+};
