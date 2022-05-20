@@ -1,16 +1,7 @@
 import "./Template.scss";
 import { tableHeaders } from "./trainingTable";
-import { useTrainingSession } from "../../hooks/useTrainingSession";
-import { useState, useEffect } from "react";
 
-export default function ModifyTemplateForm({
-  activeTemplate,
-  trainingList,
-  updateTrainingList,
-}) {
-  //const [trainingList, setTrainingList] = useState([]);
-  const foundTrainingList = useTrainingSession(activeTemplate);
-
+export default function ModifyTemplateForm({ activeTemplate, trainingList }) {
   const renderTrainings = () => {
     if (!trainingList) return;
 
@@ -62,7 +53,6 @@ export default function ModifyTemplateForm({
       if (template["template-title"] !== activeTemplate) return template;
       template["trainings"] = trainingList;
 
-      console.log(template);
       return template;
     });
 
