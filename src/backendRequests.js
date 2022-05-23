@@ -12,3 +12,19 @@ export async function createNotebook(userId, template) {
 
   return response;
 }
+
+export async function createSection(userId, notebookId, template) {
+  if (!template[0]) return;
+
+  const response = await callMyAPI({
+    userId,
+    endpoint: `api/admin/${userId}/create-section`,
+    method: "POST",
+    body: {
+      ...template[0],
+      notebookId,
+    },
+  });
+
+  return response;
+}

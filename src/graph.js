@@ -34,7 +34,6 @@ export const callMyAPI = async ({
   method = "GET",
   body = undefined,
 }) => {
-  console.log(body);
   return await fetch(`${base}/${endpoint}`, {
     method,
     headers: {
