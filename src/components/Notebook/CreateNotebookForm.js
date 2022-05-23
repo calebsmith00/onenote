@@ -1,7 +1,11 @@
 import { useTemplateSession } from "../../hooks/useTemplateSession";
 import { useUserRetrieval } from "../../hooks/useUserRetrieval";
 import { useState, useEffect } from "react";
-import { createNotebook, createSection } from "../../backendRequests";
+import {
+  createNotebook,
+  createSection,
+  createPage,
+} from "../../backendRequests";
 import { useMsal } from "@azure/msal-react";
 import UserSelect from "./UserSelect";
 import TemplateSelect from "./TemplateSelect";
@@ -31,7 +35,12 @@ export default function CreateNotebookForm() {
 
     if (!data.id) return "Invalid response";
 
-    createSection(user, data.id, selectedTemplate);
+    const section = await createSection(user, data.id, selectedTemplate);
+    const sectionData = await section.json();
+
+    if (!sectionData.id) return "Invalid response";
+
+    await createPage(user, sectionData.id, selectedTemplate);
   };
 
   const updateTemplate = (e) => {
