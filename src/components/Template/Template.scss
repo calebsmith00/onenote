@@ -1,25 +1,26 @@
 .template-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
 }
 
 .template-input {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .training-table {
+  border: 1px solid black;
+  margin: 10px 0;
+  padding: 0.5rem;
+
+  td,
+  th {
+    text-align: center;
     border: 1px solid black;
-    margin: 10px 0;
-    padding: .5rem;
+    padding: 0.5rem 2rem;
+  }
 
-    td, th {
-        text-align: center;
-        border: 1px solid black;
-        padding: .5rem 2rem;
-    }
-
-    tr {
-        padding: .5rem;
-    }
+  tr {
+    padding: 0.5rem;
+  }
 }
-
