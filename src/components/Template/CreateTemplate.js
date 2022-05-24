@@ -10,9 +10,19 @@ export default function CreateTemplate() {
     setTemplateCreated(created || false);
   };
 
-  return templateCreated ? (
-    <TemplateCreated />
-  ) : (
-    <CreateTemplateForm updateCreationStatus={handleTemplateCreation} />
+  return (
+    <div>
+      <h1>This is where templates are created</h1>
+      <p>
+        A template is a set of data that outlines what training a new-hire needs
+        to take to complete the onboarding process.
+      </p>
+
+      {templateCreated ? (
+        <TemplateCreated />
+      ) : (
+        <CreateTemplateForm updateCreationStatus={handleTemplateCreation} />
+      )}
+    </div>
   );
 }

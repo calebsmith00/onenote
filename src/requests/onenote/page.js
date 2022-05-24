@@ -2,9 +2,7 @@ import { validateToken } from "../validation.js";
 import { callMsGraph } from "../graph/index.js";
 import { loginRequest } from "../graph/authConfig.js";
 
-export async function getPage(instance, account) {
-  let pageId =
-    "1-ca464fdd477048068c186923fbaf131e!1-7ae5de74-ecdd-433d-9cb8-f1c98b8cbcdd";
+export async function getPage(instance, account, pageId) {
   let response = await instance.acquireTokenSilent({
     ...loginRequest,
     account,
