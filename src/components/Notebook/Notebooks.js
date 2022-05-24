@@ -1,25 +1,8 @@
-import { useMsal } from "@azure/msal-react";
-import React, { useEffect, useState } from "react";
-import { callMyAPI } from "../../requests/backend/index.js";
+import React from "react";
+import { useNotebooks } from "../../hooks/useNotebooks.js";
 
 export default function Notebook() {
-  const { instance, accounts } = useMsal();
-  const [notebooks, setNotebooks] = useState([]);
-
-  useEffect(() => {
-    if (!instance || !accounts[0]) return; // Validate existance of user's token
-    const userId = accounts[0].localAccountId;
-
-    const options = {
-      userId,
-      endpoint: `api/user/${userId}/retrieve-notebooks`,
-    };
-
-    callMyAPI(options)
-      .then((response) => response.json())
-      .then((notebooks) => setNotebooks(notebooks))
-      .catch((err) => console.error(err));
-  }, [instance, accounts]);
+  const notebooks = useNotebooks();
 
   const displayNotebooks = () => {
     if (notebooks.length < 1) return;
