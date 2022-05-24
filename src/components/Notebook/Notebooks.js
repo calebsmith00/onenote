@@ -1,6 +1,6 @@
 import { useMsal } from "@azure/msal-react";
 import React, { useEffect, useState } from "react";
-import { callMyAPI } from "../../graph";
+import { callMyAPI } from "../../requests/backend/index.js";
 
 export default function Notebook() {
   const { instance, accounts } = useMsal();

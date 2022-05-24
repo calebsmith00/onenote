@@ -5,7 +5,7 @@ import {
   createNotebook,
   createSection,
   createPage,
-} from "../../backendRequests";
+} from "../../requests/exports.js";
 import { useMsal } from "@azure/msal-react";
 import UserSelect from "./UserSelect";
 import TemplateSelect from "./TemplateSelect";

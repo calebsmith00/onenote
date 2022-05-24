@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUsers } from "../graphRequests";
+import { getUsers } from "../requests/exports.js";
 import { useMsal } from "@azure/msal-react";
 
 export const useUserRetrieval = () => {
