@@ -10,5 +10,5 @@ export async function createNotebook(userId, template) {
     body: template[0],
   });
 
-  return response;
+  return await response.json();
 }

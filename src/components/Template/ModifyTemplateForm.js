@@ -1,7 +1,6 @@
 import "./Template.scss";
 import { tableHeaders } from "./trainingTable";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 /*
   TABLE HEADER
@@ -100,8 +99,8 @@ export default function ModifyTemplateForm({
   const modifyTemplate = (e) => {
     e.preventDefault();
 
-    let currentTemplates = JSON.parse(sessionStorage.getItem("template"));
-    currentTemplates = currentTemplates.map((template) => {
+    const currentTemplates = JSON.parse(sessionStorage.getItem("template"));
+    const newTemplates = currentTemplates.map((template) => {
       const title = template["template-title"];
       if (title !== activeTemplate) return template;
 
@@ -111,7 +110,7 @@ export default function ModifyTemplateForm({
       };
     });
 
-    sessionStorage.setItem("template", JSON.stringify(currentTemplates));
+    sessionStorage.setItem("template", JSON.stringify(newTemplates));
 
     updateFinished(true);
   };
