@@ -2,24 +2,32 @@ import { validateToken } from "../validation.js";
 import { callMsGraph } from "../graph/index.js";
 import { loginRequest } from "../graph/authConfig.js";
 
-export async function getPage(instance, account, pageId) {
-  let response = await instance.acquireTokenSilent({
-    ...loginRequest,
-    account,
-  });
-  validateToken(response);
+export async function getPage(instance, account, pageId, sectionId = "") {
+  try {
+    const token = await instance.acquireTokenSilent({
+      ...loginRequest,
+      account,
+    });
+    validateToken(token);
 
-  let graphResponse = await callMsGraph({
-    accessToken: response.accessToken,
-    endpoint: `/onenote/pages/${pageId}/content?includeIDs=true`,
-  });
+    const parameters = `includeIDs=true&preAuthenticated=true`;
+    const pageEndpoint = `pages/${pageId}/content?${parameters}`;
+    const endpoint = sectionId
+      ? `/onenote/sections/${sectionId}/${pageEndpoint}`
+      : `/onenote/${pageEndpoint}`;
+    const graph = await callMsGraph({
+      accessToken: token.accessToken,
+      endpoint,
+    });
 
-  graphResponse = await graphResponse.text();
-  if (!graphResponse)
-    throw new Error("There was no valid response from MSGraph.");
+    const response = await graph.text();
+    if (!response) throw new Error("There was no valid response from MSGraph.");
 
-  let parser = new DOMParser();
-  let doc = parser.parseFromString(graphResponse, "text/html");
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(response, "text/html");
 
-  return doc;
+    return doc;
+  } catch (err) {
+    console.error(`ERROR: ${err}`);
+  }
 }
