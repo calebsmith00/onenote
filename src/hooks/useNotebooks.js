@@ -19,7 +19,7 @@ export const useNotebooks = () => {
       .then((response) => response.json())
       .then((notebooks) => setNotebooks(notebooks))
       .catch((err) => console.error(err));
-  }, [notebooks, instance, accounts]);
+  }, [instance, accounts]);
 
   return notebooks;
 };

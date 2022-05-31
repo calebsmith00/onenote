@@ -1,5 +1,7 @@
 import { UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { useEffect } from "react";
 import AllRoutes from "./components/Routes/AllRoutes";
+import { useNotebooks } from "./hooks/useNotebooks";
 
 function SignInButton() {
   const { instance } = useMsal();
@@ -8,6 +10,12 @@ function SignInButton() {
 }
 
 function App() {
+  const notebooks = useNotebooks();
+
+  useEffect(() => {
+    console.log(notebooks);
+  }, [notebooks]);
+
   return (
     <div>
       <AllRoutes />

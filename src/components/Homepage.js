@@ -17,7 +17,7 @@ export default function Homepage() {
       <h1>Home</h1>
 
       <AuthenticatedTemplate>
-        <Link to={`user/${userId}/onenote/notebook`}>Notebooks</Link>
+        <Link to={`user/${userId}/onenote/notebooks`}>Notebooks</Link>
       </AuthenticatedTemplate>
     </div>
   );
