@@ -15,7 +15,8 @@ export default function AddTraining() {
   useEffect(() => {
     if (templates.length <= 0) return;
     if (foundTrainingList) setTrainingList(foundTrainingList.trainings);
-  }, [templates, foundTrainingList]);
+    if (!activeTemplate) setActiveTemplate(templates[0]["template-title"]);
+  }, [templates, foundTrainingList, activeTemplate]);
 
   const updateActiveTemplate = (active) => {
     setActiveTemplate(active);

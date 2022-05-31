@@ -14,8 +14,7 @@ export default function CreateTrainingForm({
 
   useEffect(() => {
     if (templates.length <= 0) return;
-    updateTemplate(templates[0]["template-title"]);
-  }, [templates, updateTemplate]);
+  }, [templates]);
 
   const getInputFields = (handleChange) => {
     return inputNeeded.map((field) => (
