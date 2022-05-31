@@ -11,7 +11,7 @@ export async function getNotebook(instance, account, notebookName = "") {
 
     const options = {
       accessToken,
-      endpoint: `/onenote/notebooks?$expand=sections&$filter=startswith(displayName,'Templates')`,
+      endpoint: `/onenote/notebooks?$expand=sections`,
       contentType: "application/json",
     };
 
@@ -19,7 +19,7 @@ export async function getNotebook(instance, account, notebookName = "") {
     const json = await response.json();
 
     if (json.value.length <= 0) return;
-    return json.value[0];
+    return json.value;
   } catch (err) {
     console.error(`ERROR: ${err}`);
   }
