@@ -1,4 +1,4 @@
-import "./Template.scss";
+import "./Training.scss";
 import { tableHeaders } from "./trainingTable";
 import { Link } from "react-router-dom";
 

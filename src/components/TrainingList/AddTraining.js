@@ -3,7 +3,7 @@ import { useTemplateSession } from "../../hooks/useTemplateSession";
 import { useTrainingSession } from "../../hooks/useTrainingSession";
 import CreateTrainingForm from "./CreateTrainingForm";
 import ModifyTemplateForm from "./ModifyTemplateForm";
-import "./Template.scss";
+import "./Training.scss";
 
 export default function AddTraining() {
   const [trainingList, setTrainingList] = useState([]);

@@ -1,8 +1,8 @@
-import { inputNeeded } from "./templateFields";
+import { inputNeeded } from "../Template/templateFields";
 import { useState } from "react";
 import { defaultTrainings } from "./trainingTable";
 import { useTemplateSession } from "../../hooks/useTemplateSession";
-import "./Template.scss";
+import "./Training.scss";
 
 export default function CreateTrainingForm({
   updateTemplate,

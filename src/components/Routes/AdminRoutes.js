@@ -1,5 +1,5 @@
 import CreateTemplate from "../Template/CreateTemplate";
-import AddTraining from "../Template/AddTraining";
+import AddTraining from "../TrainingList/AddTraining";
 import CreateNotebook from "../Notebook/CreateNotebook";
 import { Routes, Route } from "react-router-dom";
 
