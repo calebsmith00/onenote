@@ -1,6 +1,6 @@
 import UserRoutes from "./UserRoutes";
 import AdminRoutes from "./AdminRoutes";
-import Homepage from "../Homepage";
+import Homepage from "../Homepage/Homepage";
 import { Routes, Route } from "react-router-dom";
 
 export default function AllRoutes() {
