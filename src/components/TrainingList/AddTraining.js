@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { useTemplateSession } from "../../hooks/useTemplateSession";
+import {
+  useTemplateSession,
+  useTemplateHTML,
+} from "../../hooks/useTemplateSession";
 import { useTrainingSession } from "../../hooks/useTrainingSession";
 import CreateTrainingForm from "./CreateTrainingForm";
 import ModifyTemplateForm from "./ModifyTemplateForm";

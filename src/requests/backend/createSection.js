@@ -1,6 +1,11 @@
 import { callMyAPI } from "./index.js";
 
-export async function createSection(userId, notebookId, template) {
+export async function createSection(
+  userId,
+  notebookId,
+  template,
+  sectionName = undefined
+) {
   if (!template[0]) return;
 
   const response = await callMyAPI({
@@ -10,6 +15,7 @@ export async function createSection(userId, notebookId, template) {
     body: {
       ...template[0],
       notebookId,
+      sectionName,
     },
   });
 

@@ -33,7 +33,12 @@ export default function CreateNotebookForm() {
     const notebook = await createNotebook(user, selectedTemplate);
     if (!notebook.id) return "Invalid response";
 
-    const section = await createSection(user, notebook.id, selectedTemplate);
+    const section = await createSection(
+      user,
+      notebook.id,
+      selectedTemplate,
+      "Trainings"
+    );
     const sectionData = await section.json();
 
     if (!sectionData.id) return "Invalid response";
