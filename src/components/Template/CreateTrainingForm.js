@@ -12,10 +12,6 @@ export default function CreateTrainingForm({
   const [training, setTraining] = useState(defaultTrainings);
   const { templates } = useTemplateSession();
 
-  useEffect(() => {
-    if (templates.length <= 0) return;
-  }, [templates]);
-
   const getInputFields = (handleChange) => {
     return inputNeeded.map((field) => (
       <input
