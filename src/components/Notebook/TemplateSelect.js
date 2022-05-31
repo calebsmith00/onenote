@@ -1,7 +1,7 @@
 import { useTemplateSession } from "../../hooks/useTemplateSession";
 
 function Templates() {
-  const templates = useTemplateSession();
+  const { templates } = useTemplateSession();
 
   return templates.map((template, index) => (
     <option key={index}>{template["template-title"]}</option>

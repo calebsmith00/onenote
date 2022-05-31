@@ -10,7 +10,7 @@ export default function CreateTrainingForm({
   updateFinished,
 }) {
   const [training, setTraining] = useState(defaultTrainings);
-  const templates = useTemplateSession();
+  const { templates } = useTemplateSession();
 
   useEffect(() => {
     if (templates.length <= 0) return;

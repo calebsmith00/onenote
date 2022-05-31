@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useTemplateSession } from "../../hooks/useTemplateSession";
 
 export default function CreateTemplateForm({ updateCreationStatus }) {
   const [template, setTemplate] = useState({});
+  const { createTemplate } = useTemplateSession();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,14 +17,7 @@ export default function CreateTemplateForm({ updateCreationStatus }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const currentSession =
-      sessionStorage.getItem("template") || JSON.stringify("");
-
-    sessionStorage.setItem(
-      "template",
-      JSON.stringify([...JSON.parse(currentSession), template])
-    );
-
+    createTemplate(template);
     setTemplate({});
     updateCreationStatus(true);
   };

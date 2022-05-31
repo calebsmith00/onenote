@@ -9,7 +9,7 @@ export default function AddTraining() {
   const [trainingList, setTrainingList] = useState([]);
   const [activeTemplate, setActiveTemplate] = useState("");
   const [finished, setFinished] = useState(false);
-  const templates = useTemplateSession();
+  const { templates } = useTemplateSession();
   const foundTrainingList = useTrainingSession(activeTemplate);
 
   useEffect(() => {

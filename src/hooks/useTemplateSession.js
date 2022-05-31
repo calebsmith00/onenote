@@ -17,7 +17,16 @@ export const useTemplateSession = () => {
     setTemplates(JSON.parse(sessionTemplate));
   }, []);
 
-  return templates;
+  const createTemplate = (template = undefined) => {
+    if (!template) return;
+
+    sessionStorage.setItem(
+      "template",
+      JSON.stringify([...templates, template])
+    );
+  };
+
+  return { templates, createTemplate };
 };
 
 /*

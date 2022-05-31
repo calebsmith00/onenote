@@ -14,7 +14,7 @@ export default function CreateNotebookForm() {
   const { instance, accounts } = useMsal();
   const [user, setUser] = useState("");
   const [activeTemplate, setActiveTemplate] = useState("");
-  const templates = useTemplateSession();
+  const { templates } = useTemplateSession();
   const users = useUserRetrieval();
 
   useEffect(() => {

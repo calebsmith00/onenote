@@ -32,7 +32,9 @@ export const useUserNotebooks = () => {
   useEffect(() => {
     if (!instance || !accounts[0]) return;
     getNotebook(instance, accounts[0])
-      .then((response) => console.log(response))
+      .then((response) => {
+        return setNotebooks(response);
+      })
       .catch((err) => console.error(err));
   }, [instance, accounts]);
 
