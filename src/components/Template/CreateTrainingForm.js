@@ -1,5 +1,5 @@
 import { inputNeeded } from "./templateFields";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { defaultTrainings } from "./trainingTable";
 import { useTemplateSession } from "../../hooks/useTemplateSession";
 import "./Template.scss";
