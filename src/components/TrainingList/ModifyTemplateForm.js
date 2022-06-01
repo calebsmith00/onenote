@@ -1,5 +1,6 @@
 import { Trainings, SubmitTrainings } from "./TrainingList";
 import AddTrainingSuccess from "./AddTrainingSuccess";
+import { useTemplateSession } from "../../hooks/useTemplateSession";
 
 /*
   OVERALL FORM
@@ -11,6 +12,7 @@ export default function ModifyTemplateForm({
   finished,
   updateFinished,
 }) {
+  const { createTemplate } = useTemplateSession();
   const modifyTemplate = (e) => {
     e.preventDefault();
 
