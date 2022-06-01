@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useMsal } from "@azure/msal-react";
 import { useParams } from "react-router-dom";
 import { getNotebook, getSectionPages, getPage } from "../requests/exports.js";
+
 /*
  * PURPOSE: gather the list of templates from session storage,
  * then return that as part of our custom hook.
@@ -22,12 +23,14 @@ export const useTemplateSession = () => {
     if (!template["trainings"]) template["trainings"] = [];
 
     const newTemplates = templates.map((currentTemplate) => {
-      if (currentTemplate["template-title"] === template["template-title"])
-        return {
-          ...template,
-          trainings: [...template.trainings, ...currentTemplate.trainings],
-        };
-      return currentTemplate;
+      if (currentTemplate["template-title"] !== template["template-title"])
+        return currentTemplate;
+
+      const trainings = [...currentTemplate.trainings, ...template.trainings];
+      return {
+        ...template,
+        trainings,
+      };
     });
 
     if (newTemplates.length < 1)

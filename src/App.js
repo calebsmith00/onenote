@@ -2,6 +2,7 @@ import { UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { useEffect } from "react";
 import AllRoutes from "./components/Routes/AllRoutes";
 import { useUserNotebooks } from "./hooks/useNotebooks";
+import { useOneNoteTemplate } from "./hooks/useOneNoteTemplate";
 
 function SignInButton() {
   const { instance } = useMsal();
@@ -11,6 +12,7 @@ function SignInButton() {
 
 function App() {
   const notebooks = useUserNotebooks();
+  const test = useOneNoteTemplate();
 
   return (
     <div>
