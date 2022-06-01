@@ -1,5 +1,5 @@
 import { Trainings, SubmitTrainings } from "./TrainingList";
-import { Link } from "react-router-dom";
+import AddTrainingSuccess from "./AddTrainingSuccess";
 
 /*
   OVERALL FORM
@@ -34,11 +34,7 @@ export default function ModifyTemplateForm({
     <>
       {/* GET TABLE FOR USER TO VISUALIZE TRAINING DATA */}
       {finished ? (
-        <p>
-          Your entries have been added! You can continue to add training, or
-          go&nbsp;
-          <Link to="/">back home</Link>
-        </p>
+        <AddTrainingSuccess />
       ) : (
         <form onSubmit={modifyTemplate}>
           <Trainings
