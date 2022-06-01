@@ -17,7 +17,7 @@ export default function AddTraining() {
 
   useEffect(() => {
     if (templates.length <= 0) return;
-    if (foundTrainingList) setTrainingList(foundTrainingList.trainings);
+    if (foundTrainingList.length > 0) setTrainingList(foundTrainingList);
     if (!activeTemplate) setActiveTemplate(templates[0]["template-title"]);
   }, [templates, foundTrainingList, activeTemplate]);
 
@@ -26,10 +26,7 @@ export default function AddTraining() {
   };
 
   const updateTrainingList = (list) => {
-    if (foundTrainingList.length <= 0) return;
-    if (!trainingList) return setTrainingList([list]);
-    if (trainingList.length > 0)
-      return setTrainingList([...trainingList, list]);
+    return setTrainingList([...trainingList, list]);
   };
 
   const updateFinished = (done) => {

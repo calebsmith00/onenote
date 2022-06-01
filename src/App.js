@@ -12,10 +12,6 @@ function SignInButton() {
 function App() {
   const notebooks = useUserNotebooks();
 
-  useEffect(() => {
-    console.log(notebooks);
-  }, [notebooks]);
-
   return (
     <div>
       <AllRoutes />

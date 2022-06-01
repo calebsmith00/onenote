@@ -54,7 +54,7 @@ function Body({ trainingList }) {
 */
 
 export function Trainings({ activeTemplate, trainingList }) {
-  if (!trainingList) return;
+  if (trainingList.length < 1) return;
 
   return (
     <>
@@ -72,7 +72,7 @@ export function Trainings({ activeTemplate, trainingList }) {
 */
 
 export function SubmitTrainings({ trainingList }) {
-  if (!trainingList) return;
+  if (trainingList.length < 1) return;
 
   return (
     <>
