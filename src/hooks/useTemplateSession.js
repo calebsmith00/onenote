@@ -18,13 +18,29 @@ export const useTemplateSession = () => {
     setTemplates(JSON.parse(sessionTemplate));
   }, []);
 
-  const createTemplate = (template = undefined) => {
+  const createTemplate = (template) => {
+    const title = "template-title";
+    const foundTemplate = templates.filter((currentTemplate) => {
+      if (!currentTemplate) return;
+      return currentTemplate[title] === template[title];
+    });
+
+    if (foundTemplate.length < 1)
+      sessionStorage.setItem(
+        "template",
+        JSON.stringify([...templates, template])
+      );
+  };
+
+  const updateTemplates = (template) => {
     if (!template) return;
     if (!template["trainings"]) template["trainings"] = [];
 
     const newTemplates = templates.map((currentTemplate) => {
       if (currentTemplate["template-title"] !== template["template-title"])
         return currentTemplate;
+
+      if (!currentTemplate["trainings"]) currentTemplate["trainings"] = [];
 
       const trainings = [...currentTemplate.trainings, ...template.trainings];
       return {
@@ -38,7 +54,7 @@ export const useTemplateSession = () => {
     sessionStorage.setItem("template", JSON.stringify(newTemplates));
   };
 
-  return { templates, createTemplate };
+  return { templates, createTemplate, updateTemplates };
 };
 
 /*

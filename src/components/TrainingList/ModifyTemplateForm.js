@@ -13,7 +13,7 @@ export default function ModifyTemplateForm({
   finished,
   updateFinished,
 }) {
-  const { createTemplate } = useTemplateSession();
+  const { updateTemplates } = useTemplateSession();
   const { template, updateActiveTemplate } = useActiveTemplate(activeTemplate);
   // const modifyTemplate = (e) => {
   //   e.preventDefault();
@@ -38,7 +38,7 @@ export default function ModifyTemplateForm({
     e.preventDefault();
     const getActive = updateActiveTemplate(activeTemplate);
 
-    createTemplate({
+    updateTemplates({
       ...getActive,
       trainings: trainingList,
     });

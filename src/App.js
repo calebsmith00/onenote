@@ -12,7 +12,6 @@ function SignInButton() {
 
 function App() {
   const notebooks = useUserNotebooks();
-  const test = useOneNoteTemplate();
 
   return (
     <div>
