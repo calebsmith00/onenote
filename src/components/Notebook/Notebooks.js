@@ -7,7 +7,7 @@ export default function Notebook() {
   const displayNotebooks = () => {
     if (notebooks.length < 1) return;
 
-    // Map through sections
+    // Map through sections and returns an array of <li /> elements
     const getSections = (displayName, sections) => {
       return sections.map((section) => {
         return (
@@ -18,7 +18,8 @@ export default function Notebook() {
       });
     };
 
-    // Map through notebooks
+    // Map through notebooks and return an array of <React.Fragment /> elements
+    // so that we can retrieve all sections
     const notebookElements = notebooks.map((notebook) => {
       return (
         <React.Fragment key={notebook.id}>
@@ -30,6 +31,8 @@ export default function Notebook() {
     return notebookElements;
   };
 
+  // Returns list of notebooks displayed as:
+  // {NOTEBOOK_NAME} - {SECTION_NAME}
   return (
     <>
       <ul>{displayNotebooks()}</ul>
