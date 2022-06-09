@@ -13,15 +13,27 @@ export default function Notebook() {
     setLoading(false);
   }, [notebooks]);
 
+  const copyToClipboard = async (text) => {
+    try {
+      console.log("Copied to your clipboard!");
+      return await navigator.clipboard.writeText(text.toString());
+    } catch (err) {
+      throw new Error(`[ERROR]: ${err}`);
+    }
+  };
+
   const displayNotebooks = () => {
     if (notebooks.length < 1) return;
 
     // Map through sections and returns an array of <li /> elements
-    const getSections = (displayName, sections) => {
+    const getSections = (notebookId, displayName, sections) => {
       return sections.map((section) => {
         return (
           <li key={section.id}>
-            {displayName} - {section.displayName}
+            {displayName}{" "}
+            <i onClick={() => copyToClipboard(notebookId)}>({notebookId})</i> -{" "}
+            {section.displayName}{" "}
+            <i onClick={() => copyToClipboard(section.id)}>({section.id})</i>
           </li>
         );
       });
@@ -32,7 +44,7 @@ export default function Notebook() {
     const notebookElements = notebooks.map((notebook) => {
       return (
         <React.Fragment key={notebook.id}>
-          {getSections(notebook.displayName, notebook.sections)}
+          {getSections(notebook.id, notebook.displayName, notebook.sections)}
         </React.Fragment>
       );
     });
