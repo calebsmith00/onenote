@@ -16,10 +16,19 @@ export const useNotebooks = () => {
       endpoint: `api/user/${userId}/retrieve-notebooks`,
     };
 
-    callMyAPI(options)
-      .then((response) => response.json())
-      .then((notebooks) => setNotebooks(notebooks))
-      .catch((err) => console.error(err));
+    // Asynchronous function to update notebooks state.
+    const updateNotebooks = async () => {
+      const response = await callMyAPI(options);
+      const json = await response.json();
+
+      if (!response || !json)
+        throw new Error("[ERROR]: The request could not be completed.");
+
+      setNotebooks(json);
+    };
+
+    // Call function to update the notebooks state.
+    updateNotebooks();
   }, [instance, accounts]);
 
   return notebooks;
@@ -31,11 +40,17 @@ export const useUserNotebooks = () => {
 
   useEffect(() => {
     if (!instance || !accounts[0]) return;
-    getNotebook(instance, accounts[0])
-      .then((response) => {
-        return setNotebooks(response);
-      })
-      .catch((err) => console.error(err));
+
+    // Asynchronous function to update all notebooks pertaining to the individual user.
+    const updateNotebooks = async () => {
+      const response = await getNotebook(instance, accounts[0]);
+      if (!response)
+        throw new Error("[ERROR]: The request could not be completed.");
+      setNotebooks(response);
+    };
+
+    // Call function to update the notebooks state.
+    updateNotebooks();
   }, [instance, accounts]);
 
   return notebooks;
