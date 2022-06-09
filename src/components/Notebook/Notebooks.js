@@ -15,7 +15,7 @@ export default function Notebook() {
 
   const copyToClipboard = async (text) => {
     try {
-      console.log("Copied to your clipboard!");
+      console.log(`Copied ID (${text}) to your clipboard!`);
       return await navigator.clipboard.writeText(text.toString());
     } catch (err) {
       throw new Error(`[ERROR]: ${err}`);
@@ -30,10 +30,10 @@ export default function Notebook() {
       return sections.map((section) => {
         return (
           <li key={section.id}>
-            {displayName}{" "}
-            <i onClick={() => copyToClipboard(notebookId)}>({notebookId})</i> -{" "}
-            {section.displayName}{" "}
-            <i onClick={() => copyToClipboard(section.id)}>({section.id})</i>
+            <b onClick={() => copyToClipboard(notebookId)}>{displayName}</b> -{" "}
+            <i onClick={() => copyToClipboard(section.id)}>
+              {section.displayName}
+            </i>
           </li>
         );
       });
@@ -58,6 +58,12 @@ export default function Notebook() {
   return loading ? (
     <p>We are loading your data, just a moment please!</p>
   ) : (
-    <ul>{displayNotebooks()}</ul>
+    <>
+      <span>
+        P.S: you can click on the notebook or section title to copy the ID to
+        your clipboard!
+      </span>
+      <ul>{displayNotebooks()}</ul>
+    </>
   );
 }
