@@ -8,7 +8,7 @@ import {
 } from "../../requests/exports.js";
 import { useMsal } from "@azure/msal-react";
 import UserSelect from "./UserSelect";
-import TemplateSelect from "./TemplateSelect";
+import TemplateSelect from "../Template/TemplateSelect";
 
 export default function CreateNotebookForm() {
   const { instance, accounts } = useMsal();
