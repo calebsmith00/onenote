@@ -64,6 +64,9 @@ export default function Notebook() {
         your clipboard!
       </span>
       <ul>{displayNotebooks()}</ul>
+      <>
+        <i>Hint</i>: /user/userId/onenote/section/sectionId
+      </>
     </>
   );
 }
