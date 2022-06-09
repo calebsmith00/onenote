@@ -40,7 +40,7 @@ export async function getPage({ userId, pid }) {
       endpoint: `api/user/${userId}/retrieve-page/${pid}`,
     });
 
-    console.log(backendAPICall);
+    if (backendAPICall) return backendAPICall;
   } catch (err) {
     console.error(`[ERROR]: ${err}`);
   }
