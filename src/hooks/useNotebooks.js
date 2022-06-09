@@ -25,6 +25,7 @@ export const useNotebooks = () => {
         throw new Error("[ERROR]: The request could not be completed.");
 
       setNotebooks(json);
+      sessionStorage.setItem("notebooks", JSON.stringify(json));
     };
 
     // Call function to update the notebooks state.
