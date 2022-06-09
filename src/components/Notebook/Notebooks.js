@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNotebooks } from "../../hooks/useNotebooks.js";
 
 export default function Notebook() {
   const notebooks = useNotebooks();
+  const [loading, setLoading] = useState(true);
+
+  // Runs when useNotebooks() hook is complete
+  // Update UI state to indicate that the request is loading
+  useEffect(() => {
+    if (notebooks.length < 1) return;
+
+    setLoading(false);
+  }, [notebooks]);
 
   const displayNotebooks = () => {
     if (notebooks.length < 1) return;
@@ -33,9 +42,10 @@ export default function Notebook() {
 
   // Returns list of notebooks displayed as:
   // {NOTEBOOK_NAME} - {SECTION_NAME}
-  return (
-    <>
-      <ul>{displayNotebooks()}</ul>
-    </>
+
+  return loading ? (
+    <p>We are loading your data, just a moment please!</p>
+  ) : (
+    <ul>{displayNotebooks()}</ul>
   );
 }
