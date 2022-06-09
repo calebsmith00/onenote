@@ -39,22 +39,22 @@ export const useOneNoteTemplate = () => {
       )[0];
       const sectionPages = await getSectionPages(instance, account, section.id);
 
-      const page = sectionPages.filter(
+      const trainingPage = sectionPages.filter(
         (page) => page.title === "Training List"
       )[0];
 
-      return await getPage(instance, account, page.id);
-    };
+      const page = await getPage(instance, account, trainingPage.id);
 
-    getTemplate("joaierfoij").then((response) => {
       const elements = ["table", "thead", "tbody", "td", "tr", "th"];
       const htmlContent = {};
       elements.forEach((element) => {
-        htmlContent[element] = separateHTML(response, element);
+        htmlContent[element] = separateHTML(page, element);
       });
 
       setHtml(htmlContent);
-    });
+    };
+
+    getTemplate("joaierfoij");
   }, [instance, account]);
 
   return html;
