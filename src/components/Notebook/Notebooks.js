@@ -20,19 +20,20 @@ export default function Notebook() {
 
     // Map through sections and returns an array of <li /> elements
     const getSections = (notebookId, displayName, sections) => {
+      const notebookBaseURL = `/user/${userId}/onenote/notebook/${notebookId}`;
       return sections.map((section) => {
         return (
           <span key={section.id} className="notebook-links">
             {/* Link to notebook */}
-            <Link
-              to={`/user/${userId}/onenote/notebook/${notebookId}`}
-              className="notebook-link"
-            >
+            <Link to={`${notebookBaseURL}`} className="notebook-link">
               {displayName}
             </Link>
 
             {/* Link to section */}
-            <Link to="/" className="notebook-link">
+            <Link
+              to={`${notebookBaseURL}/section/${section.id}`}
+              className="notebook-link"
+            >
               {section.displayName}
             </Link>
           </span>
