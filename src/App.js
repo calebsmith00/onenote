@@ -11,8 +11,6 @@ function SignInButton() {
 }
 
 function App() {
-  const notebooks = useUserNotebooks();
-
   return (
     <div>
       <AllRoutes />
