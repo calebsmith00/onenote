@@ -18,7 +18,14 @@ form {
   }
 }
 
-span {
+.notebook-links {
   display: flex;
-  justify-content: space-between;
+}
+
+.notebook-link {
+  text-decoration: none;
+  color: #333;
+  padding: 5px 10px;
+  margin: 5px;
+  border: 1px solid #333;
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useNotebooks } from "../../hooks/useNotebooks.js";
 
 export default function Notebook() {
@@ -13,6 +14,7 @@ export default function Notebook() {
     setLoading(false);
   }, [notebooks]);
 
+  // Copy notebook / section ID when clicked
   const copyToClipboard = async (text) => {
     try {
       console.log(`Copied ID (${text}) to your clipboard!`);
@@ -29,12 +31,17 @@ export default function Notebook() {
     const getSections = (notebookId, displayName, sections) => {
       return sections.map((section) => {
         return (
-          <li key={section.id}>
-            <b onClick={() => copyToClipboard(notebookId)}>{displayName}</b> -{" "}
-            <i onClick={() => copyToClipboard(section.id)}>
+          <span key={section.id} className="notebook-links">
+            {/* Link to notebook */}
+            <Link to="/" className="notebook-link">
+              {displayName}
+            </Link>
+
+            {/* Link to section */}
+            <Link to="/" className="notebook-link">
               {section.displayName}
-            </i>
-          </li>
+            </Link>
+          </span>
         );
       });
     };
@@ -58,15 +65,6 @@ export default function Notebook() {
   return loading ? (
     <p>We are loading your data, just a moment please!</p>
   ) : (
-    <>
-      <span>
-        P.S: you can click on the notebook or section title to copy the ID to
-        your clipboard!
-      </span>
-      <ul>{displayNotebooks()}</ul>
-      <>
-        <i>Hint</i>: /user/userId/onenote/section/sectionId
-      </>
-    </>
+    <div>{displayNotebooks()}</div>
   );
 }
