@@ -19,7 +19,7 @@ export const useSectionPages = (userId, sid) => {
     }
 
     getPagesFromSection();
-  }, []);
+  }, [userId, sid]);
 
   return pages;
 };
