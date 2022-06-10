@@ -29,7 +29,7 @@ const paths = {
     element: <Section />,
   },
   page: {
-    url: ":userId/onenote/page/:pid",
+    url: ":userId/onenote/notebook/:nid/section/:sid/page/:pid",
     element: <Page />,
   },
 };
