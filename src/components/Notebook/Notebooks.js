@@ -14,16 +14,6 @@ export default function Notebook() {
     setLoading(false);
   }, [notebooks]);
 
-  // Copy notebook / section ID when clicked
-  const copyToClipboard = async (text) => {
-    try {
-      console.log(`Copied ID (${text}) to your clipboard!`);
-      return await navigator.clipboard.writeText(text.toString());
-    } catch (err) {
-      throw new Error(`[ERROR]: ${err}`);
-    }
-  };
-
   const displayNotebooks = () => {
     if (notebooks.length < 1) return;
 
@@ -33,7 +23,7 @@ export default function Notebook() {
         return (
           <span key={section.id} className="notebook-links">
             {/* Link to notebook */}
-            <Link to="/" className="notebook-link">
+            <Link to={`asdf`} className="notebook-link">
               {displayName}
             </Link>
 
