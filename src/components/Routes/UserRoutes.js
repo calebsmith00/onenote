@@ -1,5 +1,6 @@
 import Notebooks from "../Notebook/Notebooks";
 import Notebook from "../Notebook/Notebook";
+import Section from "../Notebook/Section";
 import { Route, Routes } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import Template from "../Template/Template";
@@ -22,6 +23,10 @@ const paths = {
   notebook: {
     url: ":userId/onenote/notebook/:nid",
     element: <Notebook />,
+  },
+  section: {
+    url: ":userId/onenote/notebook/:nid/section/:sid",
+    element: <Section />,
   },
   page: {
     url: ":userId/onenote/page/:pid",
