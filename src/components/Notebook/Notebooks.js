@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNotebooks } from "../../hooks/useNotebooks.js";
 
 export default function Notebook() {
   const notebooks = useNotebooks();
   const [loading, setLoading] = useState(true);
+  const { userId } = useParams();
 
   // Runs when useNotebooks() hook is complete
   // Update UI state to indicate that the request is loading
@@ -23,7 +24,10 @@ export default function Notebook() {
         return (
           <span key={section.id} className="notebook-links">
             {/* Link to notebook */}
-            <Link to={`asdf`} className="notebook-link">
+            <Link
+              to={`/user/${userId}/onenote/notebook/${notebookId}`}
+              className="notebook-link"
+            >
               {displayName}
             </Link>
 
