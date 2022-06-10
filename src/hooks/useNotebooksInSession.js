@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useNotebookInSession = (notebookTitle) => {
+export const useNotebookInSession = (notebookId) => {
   const [sessionNotebooks, setSessionNotebooks] = useState([]);
 
   useEffect(() => {
@@ -10,13 +10,12 @@ export const useNotebookInSession = (notebookTitle) => {
     if (parsedSession.length < 1) return;
 
     const foundReferencedNotebook = parsedSession.filter(
-      (notebook) =>
-        notebook.displayName.toLowerCase() === notebookTitle.toLowerCase()
+      (notebook) => notebook.id === notebookId
     );
 
     if (foundReferencedNotebook.length < 1) return;
     setSessionNotebooks(foundReferencedNotebook);
-  }, [notebookTitle]);
+  }, [notebookId]);
 
   return sessionNotebooks;
 };

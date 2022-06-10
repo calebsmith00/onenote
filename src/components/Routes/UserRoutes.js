@@ -1,4 +1,5 @@
 import Notebooks from "../Notebook/Notebooks";
+import Notebook from "../Notebook/Notebook";
 import { Route, Routes } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import Template from "../Template/Template";
@@ -6,6 +7,10 @@ import Page from "../Notebook/Page";
 
 // Store a list of paths as an object
 const paths = {
+  userId: {
+    url: ":userId",
+    element: <Outlet />,
+  },
   retrieveTemplate: {
     url: ":userId/onenote/retrieve-template/:templateName",
     element: <Template />,
@@ -14,9 +19,9 @@ const paths = {
     url: ":userId/onenote/notebooks",
     element: <Notebooks />,
   },
-  userId: {
-    url: ":userId",
-    element: <Outlet />,
+  notebook: {
+    url: ":userId/onenote/notebook/:nid",
+    element: <Notebook />,
   },
   page: {
     url: ":userId/onenote/page/:pid",
