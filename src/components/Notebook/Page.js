@@ -38,13 +38,11 @@ export default function Page() {
     return (
       <table>
         <tbody>
-          {tableHtml.map((data, index) => {
-            return [
-              <tr key={index}>
-                <td>{data}</td>
-              </tr>,
-            ];
-          })}
+          <tr>
+            {tableHtml.map((data, index) => {
+              return [<td key={index}>{data}</td>];
+            })}
+          </tr>
         </tbody>
       </table>
     );
