@@ -2,6 +2,31 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSectionPages } from "../../hooks/useSectionPages";
 
+const LoadingComponent = ({ isLoading }) => {
+  const [loadingString, setLoadingString] = useState(
+    "We are loading the list of pages. This generally takes about 20 seconds. Please wait a few moments."
+  );
+  const [loadingTime, setLoadingTime] = useState(0);
+
+  const incrementDots = () => {
+    if (!isLoading) return;
+
+    setTimeout(() => {
+      setLoadingString(`${loadingString}.`);
+      setLoadingTime(loadingTime + 1);
+    }, 1000);
+
+    return loadingString;
+  };
+
+  return (
+    <>
+      <p>{incrementDots()}</p>
+      <p>({loadingTime} seconds)</p>
+    </>
+  );
+};
+
 const Section = () => {
   const { userId, nid, sid } = useParams();
   const [loading, setLoading] = useState(true);
@@ -28,7 +53,7 @@ const Section = () => {
   };
 
   return loading ? (
-    <p>We are loading your pages! Please wait a few moments.</p>
+    <LoadingComponent isLoading={loading} />
   ) : (
     <div className="notebook-links">{displayPages()}</div>
   );
